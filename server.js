@@ -3,7 +3,7 @@ const mongo = require('mongodb').MongoClient;
 const port = process.env.PORT || 8080;
 const client = require('socket.io').listen(8080).sockets;
 
-// connect to mongoe
+// connect to mongo
 mongo.connect('mongodb://127.0.0.1/mongochat', function(err, db) {
 
 	if(err) {
@@ -14,6 +14,7 @@ mongo.connect('mongodb://127.0.0.1/mongochat', function(err, db) {
 
 	// connect to socket.io
 	client.on('connection', function(socket) {
+		console.log('Listening on port 8080');
 		let chat = db.collection('chats');
 
 		// send status to client from server

@@ -5,8 +5,30 @@ const element = function(id) {
 const status = element('status');
 const messages = element('messages');
 const textarea = element('textarea');
-const username = element('username');
+// var username = element('username');
+// var password = element('password');
 const clearButton = element('clearButton');
+
+// user data to be used in authentication
+// since there is no database here for users...
+const userData = [
+	{
+		user: 'user1',
+		pw: 'pw1'
+	},
+	{
+		user: 'user2',
+		pw: 'pw2'
+	},
+	{
+		user: 'user3',
+		pw: 'pw3'
+	},
+	{
+		user: 'user4',
+		pw: 'pw4'
+	}
+];
 
 // set default status
 var statusDefault = status.textContent;
@@ -67,11 +89,44 @@ if (socket !== undefined) {
 	});
 
 	// handle clear button
-	clearButton.addEventListener('click', function() {
-		socket.emit('clear');
-	});
+	// clearButton.addEventListener('click', function() {
+	// 	socket.emit('clear');
+	// });
 
-	socket.on('cleared', function() {
-		messages.textContent = ''; // clear button doesn't work except on page refresh
-	});
+	// socket.on('cleared', function() {
+	// 	messages.textContent = ''; // clear button doesn't work except on page refresh
+	// });
 }
+
+$('#auth').on('click', function(event) {
+	let isAuthenticated = false;
+	event.preventDefault();
+	var username = $('#username').val();
+	var password = $('#password').val();
+	// handle sign-in
+	for (let i=0; i<userData.length; i++) {
+		if (username == userData[i].user && password == userData[i].pw) {
+			// user is authenticated; check to see which messages they should see
+			console.log('user is authenticated');
+			isAuthenticated = true;
+			$('#chat').hide();
+			$('#messages').show();
+			$('#textarea').show();
+			break;
+		}
+	}
+	if (username == userData[0].user || username == userData[1].user) {
+		// this channel is for users 1 and 2
+	} else {
+		// this channel is for users 3 and 4
+	}
+if (isAuthenticated == false) {
+		alert('Invalid username and password combination!');
+	}
+});
+
+$(document).ready(function() {
+	// only show sign-in area on page load
+	$('#messages').hide();
+	$('#textarea').hide();
+});
