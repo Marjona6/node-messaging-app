@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Node.js Real-Time Messaging App</title>
+  </head>
+  <body>
+    <h1>Node.js Real-Time Messaging App</h1>
+    <h3>Using Node.js, Express, Socket.io
+      <button id="clearButton">Clear</button>
+    </h3>
+    <div id="status"></div>
+    <div id="chat">
+      <input type="text" id="username" placeholder="Enter your name" />
+    </div>
+    <div id="messages"></div>
+    <textarea id="textarea" placeholder="Write a message"></textarea>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    <script src="public/client.js" type="text/javascript"></script>
+  </body>
+</html>
