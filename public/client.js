@@ -59,7 +59,7 @@ if (socket !== undefined) {
 				message.setAttribute('class', "chatMessage");
 				message.textContent = data[i].name + ': ' + data[i].message;
 				messages.appendChild(message);
-				messages.insertBefore(message, messages.firstChild);
+				//messages.insertBefore(message, messages.firstChild);
 			}
 		}
 	});
@@ -112,13 +112,16 @@ $('#auth').on('click', function(event) {
 			$('#chat').hide();
 			$('#messages').show();
 			$('#textarea').show();
+			$('#instructions').show();
 			break;
 		}
 	}
 	if (username == userData[0].user || username == userData[1].user) {
 		// this channel is for users 1 and 2
+		// show only messages from user1 and user2
 	} else {
 		// this channel is for users 3 and 4
+		// show only messages from user3 and user4
 	}
 if (isAuthenticated == false) {
 		alert('Invalid username and password combination!');
@@ -129,4 +132,5 @@ $(document).ready(function() {
 	// only show sign-in area on page load
 	$('#messages').hide();
 	$('#textarea').hide();
+	$('#instructions').hide();
 });
